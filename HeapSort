@@ -1,0 +1,24 @@
+import java.util.*;
+public class main 
+{
+ public static void main(String[] args) 
+ {
+  Scanner kb = new Scanner(System.in);
+  heap heapTree = new heap();
+  heapTree.display();
+  System.out.println("Press y if you want to create a heap from the tree");
+  String s = kb.nextLine();
+  if (s.equals("y")||s.equals("Y"))
+   {
+    heapTree.buildHeap(32);
+    System.out.println("Heap Completed. Continue? (Y/N)");
+    String s1 = kb.nextLine();
+    if (s1.equalsIgnoreCase("y"))
+    {
+     heapTree.sortHeap();
+     System.out.println();
+     heapTree.displaySortedHeap();
+    }
+   }
+ }
+}
