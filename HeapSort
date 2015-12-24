@@ -22,3 +22,190 @@ public class main
    }
  }
 }
+
+import java.util.*;
+
+public class heap 
+{
+  private ArrayList<Integer> heap=new ArrayList();
+  private ArrayList<Integer> sortedArray=new ArrayList();
+  private int heapSize=32;
+  public heap()
+  {
+   Random generator=new Random();
+   int randomNum=generator.nextInt(90)+10;
+   heap.add(0, 0);
+   heap.add(1, randomNum);
+   for (int i=2;i<32;)
+   {
+    int randomNum2=generator.nextInt(90)+10;
+    if(checkRepeat(randomNum2)!=true)
+    {
+      heap.add(i,randomNum2);
+      i++;
+    }
+   }
+  }
+  private boolean checkRepeat(int value)
+  {
+   boolean repeat=false;
+    if (heap.contains(value))
+     repeat=true;
+   return repeat;
+  }
+  public void display()
+  {
+    spacing(" ",40);
+    System.out.print(heap.get(1));
+    spacing(" ",40);
+    System.out.println();
+    spacing(" ",40);
+    System.out.println("|");
+    
+    spacing(" ",20);
+    System.out.print(heap.get(2));
+    spacing("-",19);
+    System.out.print("^");
+    spacing("-",20);
+    System.out.println(heap.get(3));
+    spacing(" ",20);
+    System.out.print("|");
+    spacing(" ",40);
+    System.out.println("|");
+  
+    spacing(" ",10);
+    for (int j=4;j<8;j++)
+    { 
+     if (j%2==0)
+     {
+        System.out.print(heap.get(j));
+        spacing("-",9);
+        System.out.print("^");
+        spacing("-",10);
+     }
+     else
+     {
+        System.out.print(heap.get(j));
+        spacing(" ",19);
+      }
+  }
+  System.out.println();
+  
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",20);
+  System.out.print("|");
+  spacing(" ",20);
+  System.out.print("|");
+  spacing(" ",20);
+  System.out.println("|");
+  
+  spacing(" ",5);
+  for (int j=8;j<16;j++)
+  { 
+   if (j%2==0)
+   {
+     System.out.print(heap.get(j));
+     spacing("-",4);
+     System.out.print("^");
+     spacing("-",5);
+   }
+   else
+   {
+    System.out.print(heap.get(j));
+    spacing(" ",9);
+   }
+  }
+  System.out.println();
+  
+  spacing(" ",5);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.print("|");
+  spacing(" ",10);
+  System.out.println("|");
+  
+  spacing(" ",2);
+  for (int j=16;j<32;j++)
+  { 
+   if (j%2==0)
+   {
+    System.out.print(heap.get(j));
+    spacing("-",2);
+    System.out.print("^");
+    spacing("-",2);
+   }
+   else
+   {
+    System.out.print(heap.get(j));
+    spacing(" ",4);
+   }
+  }
+  System.out.println();
+ }
+ private void spacing(String s,int space)
+ {
+  for(int i=1;i<space;){
+   System.out.print(s);
+   i++;
+  }
+ }
+
+ public void buildHeap(int size)
+ {
+  for (int i=2;i<size;i++)
+  {
+   int j=i;
+   while(j>1)
+   {
+    if (heap.get(j/2)<heap.get(j))
+    {
+     int mid =heap.get(j/2);
+     heap.set(j/2,heap.get(j));
+     heap.set(j,mid);
+     try { Thread.sleep(600); }
+     catch ( Exception e ) { }
+     display();
+     j=j/2;
+    }
+    else    
+     j=0;
+   } 
+  }
+ }
+ public void sortHeap()
+ {
+  while(heapSize>=4)
+  {
+   int temp=heap.get(1);
+   heap.set(1,heap.get(heapSize-1));
+   heap.set(heapSize-1,temp);
+   heapSize--;
+   buildHeap(heapSize);
+  }
+  int temp=heap.get(1);
+  heap.set(1,heap.get(heapSize-1));
+  heap.set(heapSize-1,temp);
+  display();
+ }
+ public void displaySortedHeap()
+ {
+  System.out.print("Sorted : ");
+  for (int i=1;i<heap.size();i++)
+  {
+   System.out.print(heap.get(i)+ " ");
+  }
+  System.out.println();
+ }
+ 
+}
